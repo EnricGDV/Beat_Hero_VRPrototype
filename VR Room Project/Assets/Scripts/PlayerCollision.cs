@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    GameManager gameManagerScript;
+
+    private void Start()
+    {
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Obstacle")
         {
-            //Debug.Log("HIT");
+            gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
-            //points++;
         }
         else if (other.tag == "EnemyAttack")
         {
+            gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
-            //points--;
-            //maxHealth--;
         }
         else if (other.tag == "EnemyDefend")
         {
+            gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
-            //points--;
-           // maxHealth--;
         }
     }
 }

@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] objs;
 
     private float points = 0.0f;
+    private float multiplyer = 1.0f;
     public uint maxHealth;
     private uint currentHealth;
 
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource song;
 
+    
     void Start()
     {
         currentHealth = maxHealth;
@@ -133,6 +135,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void IncreasePoints()
+    {
+        multiplyer++;
+        points = points++ * multiplyer;
+    }
+
+    public void BreakCombo()
+    {
+        maxHealth--;
+        multiplyer = 1.0f;
+    }
+
     public void Reset()
     {
         //Reset values
@@ -165,19 +179,17 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("HIT");
             Destroy(other.gameObject);
-            points++;
+            IncreasePoints();
         }
         else if(other.tag == "EnemyAttack")
         {
             Destroy(other.gameObject);
-            points--;
-            maxHealth--;
+            BreakCombo();
         }
         else if (other.tag == "EnemyDefend")
         {
             Destroy(other.gameObject);
-            points--;
-            maxHealth--;
+            BreakCombo();
         }
     }
 }

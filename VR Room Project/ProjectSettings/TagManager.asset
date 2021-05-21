@@ -10,6 +10,7 @@ TagManager:
   - EnemyDefend
   - Obstacle
   - Enemy
+  - GameManager
   layers:
   - Default
   - TransparentFX

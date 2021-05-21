@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class ShieldCollision : MonoBehaviour
 {
+    GameManager gameManagerScript;
+
+    private void Start()
+    {
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Obstacle")
         {
-            //Debug.Log("HIT");
+            gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
            
         }
         else if (other.tag == "EnemyAttack")
         {
+            gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
            
         }
         else if (other.tag == "EnemyDefend")
         {
+            gameManagerScript.IncreasePoints();
             Destroy(other.gameObject);
         }
     }
