@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6930063915145966974}
   - component: {fileID: 5649938615883844939}
   - component: {fileID: 1076206045826059220}
-  - component: {fileID: 5808795553124752650}
+  - component: {fileID: 6585544647940109543}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Enemy
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,8 +299,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9005282112275627781}
   m_Mesh: {fileID: 0}
---- !u!64 &5808795553124752650
-MeshCollider:
+--- !u!65 &6585544647940109543
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -309,7 +309,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.5, y: 0.5, z: -0.5}

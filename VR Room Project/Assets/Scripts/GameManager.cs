@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private float timer = 0.0f;
     private GameObject[] objs;
 
+    private float points = 0.0f;
     public uint maxHealth;
     private uint currentHealth;
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         gameState = GameState.GAME_STARTING;
+        //song = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -102,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveEnemies()
     {
-        objs = GameObject.FindGameObjectsWithTag("Enemy");
+        objs = GameObject.FindGameObjectsWithTag("EnemyAttack");
 
         foreach (GameObject enemies in objs)
         {
@@ -110,6 +112,25 @@ public class GameManager : MonoBehaviour
 
             enemies.transform.position = Vector3.MoveTowards(enemies.transform.position, new Vector3(1000.0f, enemies.transform.position.y, enemies.transform.position.z), step);
         }
+
+        objs = GameObject.FindGameObjectsWithTag("EnemyDefend");
+
+        foreach (GameObject enemies in objs)
+        {
+            float step = speed * Time.deltaTime;
+
+            enemies.transform.position = Vector3.MoveTowards(enemies.transform.position, new Vector3(1000.0f, enemies.transform.position.y, enemies.transform.position.z), step);
+        }
+
+        objs = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (GameObject enemies in objs)
+        {
+            float step = speed * Time.deltaTime;
+
+            enemies.transform.position = Vector3.MoveTowards(enemies.transform.position, new Vector3(1000.0f, enemies.transform.position.y, enemies.transform.position.z), step);
+        }
+
     }
 
     public void Reset()
@@ -119,12 +140,44 @@ public class GameManager : MonoBehaviour
         timer = 0.0f;
 
         //Destroy enemies that are still alive
-        objs = GameObject.FindGameObjectsWithTag("Enemy");
+        objs = GameObject.FindGameObjectsWithTag("EnemyAttack");
+        foreach (GameObject enemies in objs)
+        {
+            Destroy(enemies);
+        }
+        objs = GameObject.FindGameObjectsWithTag("EnemyDefend");
+        foreach (GameObject enemies in objs)
+        {
+            Destroy(enemies);
+        }
+        objs = GameObject.FindGameObjectsWithTag("Obstacle");
         foreach (GameObject enemies in objs)
         {
             Destroy(enemies);
         }
 
         gameState = GameState.GAME_STOP;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Obstacle")
+        {
+            //Debug.Log("HIT");
+            Destroy(other.gameObject);
+            points++;
+        }
+        else if(other.tag == "EnemyAttack")
+        {
+            Destroy(other.gameObject);
+            points--;
+            maxHealth--;
+        }
+        else if (other.tag == "EnemyDefend")
+        {
+            Destroy(other.gameObject);
+            points--;
+            maxHealth--;
+        }
     }
 }

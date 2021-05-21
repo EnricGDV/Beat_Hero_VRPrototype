@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Box
   - Trail
+  - EnemyAttack
+  - EnemyDefend
+  - Obstacle
   - Enemy
   layers:
   - Default
