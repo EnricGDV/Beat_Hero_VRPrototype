@@ -26,7 +26,7 @@ public class ShieldCollision : MonoBehaviour
         }
         else if (other.tag == "EnemyDefend")
         {
-            gameManagerScript.IncreasePoints();
+            gameManagerScript.ManageScore(1);
             Destroy(other.gameObject);
         }
     }

@@ -29,8 +29,11 @@ public class GameManager : MonoBehaviour
     private float timer = 0.0f;
     private GameObject[] objs;
 
-    private float points = 0.0f;
-    private float multiplyer = 1.0f;
+    private float score = 0.0f;
+    private float scoreMultiplier = 1.0f;
+    private int currentStreak = 0;
+    public int streakInterval;
+
     public uint maxHealth;
     private uint currentHealth;
 
@@ -76,9 +79,6 @@ public class GameManager : MonoBehaviour
                                 break;
                         }
                         timer = 0.0f;
-
-                        //TODO: Remove
-                        currentHealth--;
                     }
 
                     if (currentHealth <= 0)
@@ -91,8 +91,6 @@ public class GameManager : MonoBehaviour
                 }
             case GameState.GAME_STOPPING:
                 {
-                    song.Stop();
-
                     Reset();
 
                     break;
@@ -135,22 +133,30 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void IncreasePoints()
+    public void ManageScore(float difference)
     {
-        multiplyer++;
-        points = points++ * multiplyer;
+        //Update the streak
+        currentStreak++;
+
+        //Update the score multiplier
+        scoreMultiplier = currentStreak % streakInterval + 1;
+
+        //Update the score
+        score += difference * scoreMultiplier;
     }
 
     public void BreakCombo()
     {
-        maxHealth--;
-        multiplyer = 1.0f;
+        currentHealth--;
+        currentStreak = 0;
     }
 
     public void Reset()
     {
         //Reset values
         currentHealth = maxHealth;
+        currentStreak = 0;
+        score = 0.0f;
         timer = 0.0f;
 
         //Destroy enemies that are still alive
@@ -170,6 +176,8 @@ public class GameManager : MonoBehaviour
             Destroy(enemies);
         }
 
+        song.Stop();
+
         gameState = GameState.GAME_STOP;
     }
 
@@ -179,7 +187,7 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("HIT");
             Destroy(other.gameObject);
-            IncreasePoints();
+            ManageScore(1);
         }
         else if(other.tag == "EnemyAttack")
         {

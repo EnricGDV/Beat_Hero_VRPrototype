@@ -20,7 +20,7 @@ public class SwordCollision : MonoBehaviour
         }
         else if (other.tag == "EnemyAttack")
         {
-            gameManagerScript.IncreasePoints();
+            gameManagerScript.ManageScore(1);
             Destroy(other.gameObject);
         }
         else if (other.tag == "EnemyDefend")
