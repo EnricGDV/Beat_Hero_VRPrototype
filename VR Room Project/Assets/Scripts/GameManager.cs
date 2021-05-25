@@ -41,12 +41,16 @@ public class GameManager : MonoBehaviour
 
     public AudioSource song;
 
-    
+    public ParticleSystem particleSystem_1;
+    public ParticleSystem particleSystem_2;
+
     void Start()
     {
         currentHealth = maxHealth;
         gameState = GameState.GAME_STARTING;
-        //song = GetComponent<AudioSource>();
+        particleSystem_1.emissionRate = 0;
+        particleSystem_2.emissionRate = 0;
+        song.volume = 0.5f;
     }
 
     // Update is called once per frame
@@ -188,16 +192,42 @@ public class GameManager : MonoBehaviour
             //Debug.Log("HIT");
             Destroy(other.gameObject);
             ManageScore(1);
+            EmmitParticles(1);
         }
         else if(other.tag == "EnemyAttack")
         {
             Destroy(other.gameObject);
             BreakCombo();
+            EmmitParticles(2);
         }
         else if (other.tag == "EnemyDefend")
         {
             Destroy(other.gameObject);
             BreakCombo();
+            EmmitParticles(2);
+        }
+    }
+
+    private void EmmitParticles(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                {
+                    return;
+                }
+            case 1:
+                {
+                    // Acierto
+                    particleSystem_1.Emit(10);
+                    break;
+                }
+            case 2:
+                {
+                    // Error
+                    particleSystem_2.Emit(10);
+                    break;
+                }
         }
     }
 }
