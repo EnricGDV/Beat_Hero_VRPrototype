@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
             float step = speed * Time.deltaTime;
 
             enemies.transform.position = Vector3.MoveTowards(enemies.transform.position, new Vector3(1000.0f, enemies.transform.position.y, enemies.transform.position.z), step);
+            enemies.GetComponentInChildren<Transform>().Rotate(Time.deltaTime*50, Time.deltaTime*150, 0);
         }
 
     }
