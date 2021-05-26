@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     private int currentStreak = 0;
     public int streakInterval;
 
+    private bool firstAttack = true;
+    private bool firstDefend = true;
+    private bool firstObstacle = true;
+
     public uint maxHealth;
     private uint currentHealth;
 
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
     public ParticleSystem particleSystem_2;
 
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI hpText;
 
     void Start()
     {
@@ -77,14 +82,39 @@ public class GameManager : MonoBehaviour
                         {
                             case 1:
                                 Instantiate(enemyDef, new Vector3(leftSpawner.position.x, leftSpawner.position.y, leftSpawner.position.z), Quaternion.identity);
+                                if(firstDefend)
+                                {
+                                    firstDefend = !firstDefend;
+                                }
+                                if (!firstDefend)
+                                {
+                                    enemyDef.GetComponentInChildren<Canvas>().enabled = false;
+                                }
                                 break;
                             case 2:
                                 Instantiate(obstacle, new Vector3(MidSpawner.position.x, MidSpawner.position.y, MidSpawner.position.z), Quaternion.identity);
+                                if (firstObstacle)
+                                {
+                                    firstObstacle = !firstObstacle;
+                                }
+                                if (!firstObstacle)
+                                {
+                                    obstacle.GetComponentInChildren<Canvas>().enabled = false;
+                                }
                                 break;
                             case 3:
                                 Instantiate(enemyAttack, new Vector3(RightSpawner.position.x, RightSpawner.position.y, RightSpawner.position.z), Quaternion.identity);
+                                if (firstAttack)
+                                {
+                                    firstAttack = !firstAttack;
+                                }
+                                if (!firstAttack)
+                                {
+                                    enemyAttack.GetComponentInChildren<Canvas>().enabled = false;
+                                }
                                 break;
                         }
+                        hpText.text = currentHealth.ToString() + " HP";
                         timer = 0.0f;
                     }
 
