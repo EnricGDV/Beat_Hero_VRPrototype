@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem particleSystem_1;
     public ParticleSystem particleSystem_2;
+
+    public TextMeshProUGUI pointsText;
 
     void Start()
     {
@@ -148,6 +151,7 @@ public class GameManager : MonoBehaviour
 
         //Update the score
         score += difference * scoreMultiplier;
+        pointsText.text = score.ToString() + " pts";
     }
 
     public void BreakCombo()
