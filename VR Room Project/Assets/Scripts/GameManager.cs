@@ -48,9 +48,12 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem particleSystem_1;
     public ParticleSystem particleSystem_2;
+    public ParticleSystem particleSystem_3;
 
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI hpText;
+
+    public AudioSource hurtAudioClip;
 
     void Start()
     {
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.GAME_STARTING;
         particleSystem_1.emissionRate = 0;
         particleSystem_2.emissionRate = 0;
+        particleSystem_3.emissionRate = 0;
         song.volume = 0.5f;
     }
 
@@ -68,7 +72,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GAME_STARTING:
                 {
-                    song.Play();
+                    //song.Play(); // TODO: Uncomment
                     gameState = GameState.GAME_RUNNING;
                     break;
                 }
@@ -188,6 +192,7 @@ public class GameManager : MonoBehaviour
     {
         currentHealth--;
         currentStreak = 0;
+        hurtAudioClip.Play();
     }
 
     public void Reset()
@@ -243,7 +248,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EmmitParticles(int type)
+    public void EmmitParticles(int type, Transform transform = null)
     {
         switch (type)
         {
@@ -253,14 +258,22 @@ public class GameManager : MonoBehaviour
                 }
             case 1:
                 {
-                    // Acierto
+                    // Right
                     particleSystem_1.Emit(10);
                     break;
                 }
             case 2:
                 {
-                    // Error
+                    // Wrong
                     particleSystem_2.Emit(10);
+                    break;
+                }
+            case 3:
+                {
+                    // Death
+                    if (transform != null) 
+                    particleSystem_3.gameObject.transform.position = transform.position;
+                    particleSystem_3.Emit(100);
                     break;
                 }
         }

@@ -25,7 +25,7 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (other.tag == "EnemyDefend")
         {
-            gameManagerScript.BreakCombo();
+            gameManagerScript.BreakCombo(); 
             Destroy(other.gameObject);
         }
     }
