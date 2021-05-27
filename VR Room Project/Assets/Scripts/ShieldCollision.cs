@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShieldCollision : MonoBehaviour
 {
     GameManager gameManagerScript;
+    ParticleSystem particleSystem;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class ShieldCollision : MonoBehaviour
         else if (other.tag == "EnemyDefend")
         {
             gameManagerScript.ManageScore(1);
+            particleSystem = other.GetComponentInChildren<ParticleSystem>();
+            particleSystem.Emit(10);
             Destroy(other.gameObject);
         }
     }
