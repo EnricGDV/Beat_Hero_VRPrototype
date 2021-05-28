@@ -291,7 +291,6 @@ public class GameManager : MonoBehaviour
         if(other.tag == "Obstacle")
         {
             //Debug.Log("HIT");
-            playerScript.hurtAudioClip.Play();
             Destroy(other.gameObject);
             ManageScore(1);
             EmmitParticles(1);
