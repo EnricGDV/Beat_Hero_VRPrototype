@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GAME_STARTING:
                 {
-                    //song.Play(); // TODO: Uncomment
+                    song.Play();
                     gameState = GameState.GAME_RUNNING;
                     break;
                 }
