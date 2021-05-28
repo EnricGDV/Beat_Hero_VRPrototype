@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI hpText;
 
-    public AudioSource hurtAudioClip;
 
     void Start()
     {
@@ -192,7 +191,6 @@ public class GameManager : MonoBehaviour
     {
         currentHealth--;
         currentStreak = 0;
-        hurtAudioClip.Play();
     }
 
     public void Reset()
