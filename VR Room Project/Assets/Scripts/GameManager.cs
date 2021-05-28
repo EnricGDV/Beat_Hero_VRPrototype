@@ -322,7 +322,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 {
                     // Right
-                    particleSystem_1.Emit(10);
+                    particleSystem_1.Emit(3);
                     break;
                 }
             case 2:
