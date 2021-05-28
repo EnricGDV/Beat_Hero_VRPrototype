@@ -83,37 +83,98 @@ public class GameManager : MonoBehaviour
 
                         switch (n)
                         {
-                            case 1:
-                                Instantiate(enemyDef, new Vector3(leftSpawner.position.x, leftSpawner.position.y, leftSpawner.position.z), Quaternion.identity);
-                                if(firstDefend)
+                            case 1: //Left Row
+                                int pref = Random.Range(1, 3);
+                                if(pref == 1)
                                 {
-                                    firstDefend = !firstDefend;
+                                    Instantiate(enemyDef, new Vector3(leftSpawner.position.x, leftSpawner.position.y, leftSpawner.position.z), Quaternion.identity);
+                                    if (firstDefend)
+                                    {
+                                        firstDefend = !firstDefend;
+                                    }
+                                    if (!firstDefend)
+                                    {
+                                        enemyDef.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
                                 }
-                                if (!firstDefend)
+                                else if(pref == 2)
                                 {
-                                    enemyDef.GetComponentInChildren<Canvas>().enabled = false;
+                                    Instantiate(obstacle, new Vector3(leftSpawner.position.x, leftSpawner.position.y, leftSpawner.position.z), Quaternion.identity);
+                                    if (firstObstacle)
+                                    {
+                                        firstObstacle = !firstObstacle;
+                                    }
+                                    if (!firstObstacle)
+                                    {
+                                        obstacle.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
+                                }
+                                
+                                break;
+                            case 2: //Mid Row
+                                int pref2 = Random.Range(1, 4);
+                                if (pref2 == 1)
+                                {
+                                    Instantiate(enemyDef, new Vector3(MidSpawner.position.x, MidSpawner.position.y, MidSpawner.position.z), Quaternion.identity);
+                                    if (firstDefend)
+                                    {
+                                        firstDefend = !firstDefend;
+                                    }
+                                    if (!firstDefend)
+                                    {
+                                        enemyDef.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
+                                }
+                                else if (pref2 == 2)
+                                {
+                                    Instantiate(obstacle, new Vector3(MidSpawner.position.x, MidSpawner.position.y, MidSpawner.position.z), Quaternion.identity);
+                                    if (firstObstacle)
+                                    {
+                                        firstObstacle = !firstObstacle;
+                                    }
+                                    if (!firstObstacle)
+                                    {
+                                        obstacle.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
+                                }
+                                else if (pref2 == 3)
+                                {
+                                    Instantiate(enemyAttack, new Vector3(MidSpawner.position.x, MidSpawner.position.y, MidSpawner.position.z), Quaternion.identity);
+                                    if (firstAttack)
+                                    {
+                                        firstAttack = !firstAttack;
+                                    }
+                                    if (!firstAttack)
+                                    {
+                                        enemyAttack.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
                                 }
                                 break;
-                            case 2:
-                                Instantiate(obstacle, new Vector3(MidSpawner.position.x, MidSpawner.position.y, MidSpawner.position.z), Quaternion.identity);
-                                if (firstObstacle)
+                            case 3: //Right Row
+                                int pref3 = Random.Range(1, 3);
+                                if (pref3 == 1)
                                 {
-                                    firstObstacle = !firstObstacle;
+                                    Instantiate(obstacle, new Vector3(RightSpawner.position.x, RightSpawner.position.y, RightSpawner.position.z), Quaternion.identity);
+                                    if (firstObstacle)
+                                    {
+                                        firstObstacle = !firstObstacle;
+                                    }
+                                    if (!firstObstacle)
+                                    {
+                                        obstacle.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
                                 }
-                                if (!firstObstacle)
+                                else if (pref3 == 2)
                                 {
-                                    obstacle.GetComponentInChildren<Canvas>().enabled = false;
-                                }
-                                break;
-                            case 3:
-                                Instantiate(enemyAttack, new Vector3(RightSpawner.position.x, RightSpawner.position.y, RightSpawner.position.z), Quaternion.identity);
-                                if (firstAttack)
-                                {
-                                    firstAttack = !firstAttack;
-                                }
-                                if (!firstAttack)
-                                {
-                                    enemyAttack.GetComponentInChildren<Canvas>().enabled = false;
+                                    Instantiate(enemyAttack, new Vector3(RightSpawner.position.x, RightSpawner.position.y, RightSpawner.position.z), Quaternion.identity);
+                                    if (firstAttack)
+                                    {
+                                        firstAttack = !firstAttack;
+                                    }
+                                    if (!firstAttack)
+                                    {
+                                        enemyAttack.GetComponentInChildren<Canvas>().enabled = false;
+                                    }
                                 }
                                 break;
                         }
@@ -275,5 +336,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void CheckCanvas(GameObject pref)
+    {
+
     }
 }
