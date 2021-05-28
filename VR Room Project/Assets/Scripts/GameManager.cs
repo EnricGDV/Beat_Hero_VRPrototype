@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
-        gameState = GameState.GAME_STARTING;
+        gameState = GameState.GAME_STOP;
         particleSystem_1.emissionRate = 0;
         particleSystem_2.emissionRate = 0;
         particleSystem_3.emissionRate = 0;
@@ -73,6 +72,11 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GAME_STARTING:
                 {
+                    currentHealth = maxHealth;
+                    currentStreak = 0;
+                    score = 0.0f;
+                    timer = 0.0f;
+
                     song.Play();
                     gameState = GameState.GAME_RUNNING;
                     break;
@@ -194,7 +198,7 @@ public class GameManager : MonoBehaviour
                 }
             case GameState.GAME_STOPPING:
                 {
-                    Reset();
+                    Death();
 
                     break;
                 }
@@ -256,13 +260,10 @@ public class GameManager : MonoBehaviour
         currentStreak = 0;
     }
 
-    public void Reset()
+    public void Death()
     {
         //Reset values
-        currentHealth = maxHealth;
-        currentStreak = 0;
-        score = 0.0f;
-        timer = 0.0f;
+        currentHealth = 0;
 
         //Destroy enemies that are still alive
         objs = GameObject.FindGameObjectsWithTag("EnemyAttack");
