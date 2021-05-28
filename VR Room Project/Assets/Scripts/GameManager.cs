@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
     private bool firstDefend = true;
     private bool firstObstacle = true;
 
-    public uint maxHealth;
-    private uint currentHealth;
+    public int maxHealth;
+    private int currentHealth;
 
     private GameState gameState;
 
