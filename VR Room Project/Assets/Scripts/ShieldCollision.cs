@@ -16,6 +16,7 @@ public class ShieldCollision : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
 
             if (defendAudioClip != null)
@@ -24,6 +25,7 @@ public class ShieldCollision : MonoBehaviour
         else if (other.tag == "EnemyAttack")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
 
             if (defendAudioClip != null)
@@ -32,6 +34,7 @@ public class ShieldCollision : MonoBehaviour
         else if (other.tag == "EnemyDefend")
         {
             gameManagerScript.ManageScore(1);
+            gameManagerScript.EmmitParticles(1);
             gameManagerScript.EmmitParticles(3, other.transform);
             Destroy(other.gameObject);
 

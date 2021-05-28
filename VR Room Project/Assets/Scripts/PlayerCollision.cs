@@ -24,18 +24,21 @@ public class PlayerCollision : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
             hurtAudioClip.Play();
         }
         else if (other.tag == "EnemyAttack")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
             hurtAudioClip.Play();
         }
         else if (other.tag == "EnemyDefend")
         {
-            gameManagerScript.BreakCombo(); 
+            gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
             hurtAudioClip.Play();
         }

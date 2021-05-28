@@ -16,6 +16,7 @@ public class SwordCollision : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
 
             if (sliceAudioClip != null)
@@ -24,6 +25,7 @@ public class SwordCollision : MonoBehaviour
         else if (other.tag == "EnemyAttack")
         {
             gameManagerScript.ManageScore(1);
+            gameManagerScript.EmmitParticles(1);
             gameManagerScript.EmmitParticles(3, other.transform);
             Destroy(other.gameObject);
 
@@ -33,6 +35,7 @@ public class SwordCollision : MonoBehaviour
         else if (other.tag == "EnemyDefend")
         {
             gameManagerScript.BreakCombo();
+            gameManagerScript.EmmitParticles(2);
             Destroy(other.gameObject);
 
             if (sliceAudioClip != null)
