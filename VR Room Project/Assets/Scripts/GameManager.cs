@@ -330,8 +330,8 @@ public class GameManager : MonoBehaviour
             case 3:
                 {
                     // Death
-                    if (transform != null) 
-                    particleSystem_3.gameObject.transform.position = transform.position;
+                    if (transform != null)
+                        particleSystem_3.gameObject.transform.position = transform.position;
                     particleSystem_3.Emit(100);
                     break;
                 }
