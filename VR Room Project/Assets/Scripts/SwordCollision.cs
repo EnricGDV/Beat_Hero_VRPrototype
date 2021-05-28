@@ -5,10 +5,11 @@ using UnityEngine;
 public class SwordCollision : MonoBehaviour
 {
     GameManager gameManagerScript;
-    public AudioSource sliceAudioClip;
+    private AudioSource sliceAudioClip;
     private void Start()
     {
         gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        sliceAudioClip = GameObject.Find("Slice Audio").GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -16,20 +17,26 @@ public class SwordCollision : MonoBehaviour
         {
             gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
-            sliceAudioClip.Play();
+
+            if (sliceAudioClip != null)
+                sliceAudioClip.Play();
         }
         else if (other.tag == "EnemyAttack")
         {
             gameManagerScript.ManageScore(1);
             gameManagerScript.EmmitParticles(3, other.transform);
             Destroy(other.gameObject);
-            sliceAudioClip.Play();
+
+            if (sliceAudioClip != null)
+                sliceAudioClip.Play();
         }
         else if (other.tag == "EnemyDefend")
         {
             gameManagerScript.BreakCombo();
             Destroy(other.gameObject);
-            sliceAudioClip.Play();
+
+            if (sliceAudioClip != null)
+                sliceAudioClip.Play();
         }
     }
 }
