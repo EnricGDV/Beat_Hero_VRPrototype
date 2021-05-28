@@ -170,6 +170,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b7157e5e-4ce9-42bf-bb95-71987e5b8b08",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "79634234-07c9-488b-98bd-7d83eb6895c5",
                     "path": "<XRController>{LeftHand}/deviceRotation",
                     "interactions": "",
@@ -636,6 +647,17 @@
                     "name": "",
                     "id": "92bb5b8f-bf48-4dab-af05-50a865773895",
                     "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ceb3e64-b113-432f-9ca8-18725edc41ef",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

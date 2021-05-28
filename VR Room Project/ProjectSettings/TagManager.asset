@@ -11,6 +11,9 @@ TagManager:
   - Obstacle
   - Enemy
   - GameManager
+  - Boulder
+  - CanvasMenu
+  - CanvasRestart
   layers:
   - Default
   - TransparentFX

@@ -55,14 +55,20 @@ public class GameManager : MonoBehaviour
 
     private PlayerCollision playerScript;
 
+    private int playNumber;
+    private Canvas menuCanvas;
+    private Canvas restartCanvas;
+
     void Start()
     {
-        gameState = GameState.GAME_STARTING;
+        gameState = GameState.GAME_STOP;
         particleSystem_1.emissionRate = 0;
         particleSystem_2.emissionRate = 0;
         particleSystem_3.emissionRate = 0;
         song.volume = 0.5f;
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCollision>();
+        menuCanvas = GameObject.FindGameObjectWithTag("CanvasMenu").GetComponent<Canvas>();
+        restartCanvas = GameObject.FindGameObjectWithTag("CanvasRestart").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -75,10 +81,17 @@ public class GameManager : MonoBehaviour
                     currentHealth = maxHealth;
                     currentStreak = 0;
                     score = 0.0f;
+                    pointsText.text = score.ToString() + " pts";
                     timer = 0.0f;
+
+                    if (menuCanvas.enabled)
+                        menuCanvas.enabled = false;
+                    else if (restartCanvas.enabled)
+                        restartCanvas.enabled = false;
 
                     song.Play();
                     gameState = GameState.GAME_RUNNING;
+                    playNumber++;
                     break;
                 }
             case GameState.GAME_RUNNING:
@@ -188,7 +201,7 @@ public class GameManager : MonoBehaviour
                         timer = 0.0f;
                     }
 
-                    if (currentHealth <= 0 || currentHealth > 20)
+                    if (currentHealth <= 0)
                         gameState = GameState.GAME_STOPPING;
 
                     timer += Time.deltaTime;
@@ -204,6 +217,15 @@ public class GameManager : MonoBehaviour
                 }
             case GameState.GAME_STOP:
                 {
+                    if (playNumber == 0)
+                    {
+                        restartCanvas.enabled = false;
+                    }
+                    if (playNumber > 0)
+                    {
+                        restartCanvas.enabled = true;
+                        restartCanvas.GetComponentInChildren<UnityEngine.UI.Text>().text = score.ToString() + " pts";
+                    }
                     break;
                 }
         }
@@ -346,5 +368,10 @@ public class GameManager : MonoBehaviour
     public void CheckCanvas(GameObject pref)
     {
 
+    }
+
+    public void StartGame()
+    {
+        gameState = GameState.GAME_STARTING;
     }
 }
