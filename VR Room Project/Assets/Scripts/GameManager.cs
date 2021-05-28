@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI hpText;
 
+    private PlayerCollision playerScript;
 
     void Start()
     {
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         particleSystem_2.emissionRate = 0;
         particleSystem_3.emissionRate = 0;
         song.volume = 0.5f;
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCollision>();
     }
 
     // Update is called once per frame
@@ -289,18 +291,21 @@ public class GameManager : MonoBehaviour
         if(other.tag == "Obstacle")
         {
             //Debug.Log("HIT");
+            playerScript.hurtAudioClip.Play();
             Destroy(other.gameObject);
             ManageScore(1);
             EmmitParticles(1);
         }
         else if(other.tag == "EnemyAttack")
         {
+            playerScript.hurtAudioClip.Play();
             Destroy(other.gameObject);
             BreakCombo();
             EmmitParticles(2);
         }
         else if (other.tag == "EnemyDefend")
         {
+            playerScript.hurtAudioClip.Play();
             Destroy(other.gameObject);
             BreakCombo();
             EmmitParticles(2);
