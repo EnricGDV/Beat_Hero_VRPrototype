@@ -9804,9 +9804,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 1.7074776
+  m_Height: 1.1064607
   m_Direction: 1
-  m_Center: {x: 0, y: 0.66367555, z: -0}
+  m_Center: {x: -0.0000050741096, y: 0.96418434, z: -4.027311e-15}
 --- !u!54 &3255576422416377748
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9835,7 +9835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeb15dc76b53eb4c835f7e9d2482f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliceAudioClip: {fileID: 0}
 --- !u!1 &9012319780788396800
 GameObject:
   m_ObjectHideFlags: 0
