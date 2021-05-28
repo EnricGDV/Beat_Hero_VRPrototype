@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
                         timer = 0.0f;
                     }
 
-                    if (currentHealth <= 0)
+                    if (currentHealth <= 0 || currentHealth > 20)
                         gameState = GameState.GAME_STOPPING;
 
                     timer += Time.deltaTime;
