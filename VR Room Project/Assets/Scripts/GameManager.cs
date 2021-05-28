@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameState = GameState.GAME_STOP;
+        gameState = GameState.GAME_STARTING;
         particleSystem_1.emissionRate = 0;
         particleSystem_2.emissionRate = 0;
         particleSystem_3.emissionRate = 0;
